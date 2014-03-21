@@ -1,0 +1,216 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>tmhs.cytoscape</groupId>
+	<artifactId>compoundView-parent</artifactId>
+	<packaging>pom</packaging>
+	<modules>
+
+		<module>compoundView-application</module>
+		<module>ChemAPI</module>
+		<module>documents</module>
+		<module>Samples</module>
+	</modules>
+	<!-- <parent> <groupId>cytoscape</groupId> <artifactId>parent</artifactId> 
+		<version>2.8.4-SNAPSHOT</version> </parent> -->
+
+
+	<repositories>
+		<repository>
+			<id>cytoscape_snapshots</id>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<name>Cytoscape Snapshots</name>
+			<url>http://code.cytoscape.org/nexus/content/repositories/snapshots/</url>
+		</repository>
+		<repository>
+			<id>cytoscape_releases</id>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<name>Cytoscape Releases</name>
+			<url>http://code.cytoscape.org/nexus/content/repositories/releases/</url>
+		</repository>
+	</repositories>
+	<dependencies>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>app-api</artifactId>
+			<version>${cyVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>core-task-api</artifactId>
+			<version>${cyVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>swing-application-api</artifactId>
+			<version>${cyVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>work-swing-api</artifactId>
+			<version>${cyVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>swing-app-api</artifactId>
+			<version>${cyVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>presentation-api</artifactId>
+			<version>${cyVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.core</artifactId>
+			<version>${osgi.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.ops4j.pax.logging</groupId>
+			<artifactId>pax-logging-api</artifactId>
+			<version>1.7.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>service-api</artifactId>
+			<version>${cyVersion}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<!-- <build> <plugins> <plugin> <groupId>com.github.github</groupId> <artifactId>downloads-maven-plugin</artifactId> 
+		<version>0.6</version> <configuration> <description>${project.version} release 
+		of ${project.name}</description> <override>true</override> <includeAttached>true</includeAttached> 
+		<userName>zhangya998@gmail.com</userName> <password>woshiyygg336</password> 
+		<repositoryName>https://github.com/yage99/chemlib.git</repositoryName> <repositoryName>chemlib</repositoryName> 
+		</configuration> <executions> <execution> <goals> <goal>upload</goal> </goals> 
+		<phase>install</phase> </execution> </executions> </plugin> </plugins> </build> -->
+	<scm>
+		<connection>
+			scm:svn:https://svn.code.sf.net/p/chemenrich/code-0/trunk
+		</connection>
+		<developerConnection>
+			scm:svn:https://svn.code.sf.net/p/chemenrich/code-0/trunk
+		</developerConnection>
+	</scm>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<tagBase>https://svn.code.sf.net/p/chemenrich/code-0/tags/</tagBase>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
+			<!-- upload all readme -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>wagon-maven-plugin</artifactId>
+				<version>1.0-beta-4</version>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>release</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>upload</goal>
+						</goals>
+						<configuration>
+							<fromDir>./</fromDir>
+							<includes>
+								README
+							</includes>
+							<url>sftp://zhangya998,chemenrich@frs.sourceforge.net:/home/frs/project/c/ch/chemenrich/</url>
+							<toDir>./</toDir>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.wagon</groupId>
+						<artifactId>wagon-ssh</artifactId>
+						<version>2.4</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+	<properties>
+		<!-- # List of authors. Note each author and institution pair are separated 
+			by a : (colon) # each additional author institution pair must be separated 
+			from other pairs bye a ; (semicolon) -->
+		<developerList>ya zhang, yzhang2@tmhs.org:TMHRI</developerList>
+		<cyVersion>3.1.0</cyVersion>
+		<projectName>EnrichedChemPlugin</projectName>
+		<maven.build.timestamp.format>MMM dd, yyyy</maven.build.timestamp.format>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<releaseVersion>${project.version}</releaseVersion>
+		<description>&lt;p&gt;Get a enriched view combined with experiment
+			result and compound similarity.&lt;/p&gt;</description>
+		<url>null</url>
+		<releaseDir>I:/release/${project.version}</releaseDir>
+		<EnCoding>UTF-8</EnCoding>
+		<osgi.api.version>4.2.0</osgi.api.version>
+	</properties>
+	<version>2.3.1-SNAPSHOT</version>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>tmhs.cytoscape</groupId>
+				<artifactId>compoundView-application</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ChemAPI</groupId>
+				<artifactId>ChemAPI</artifactId>
+				<version>${project.version}</version>
+				<type>bundle</type>
+			</dependency>
+			<dependency>
+				<groupId>tmhs.cytoscape</groupId>
+				<artifactId>documents</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

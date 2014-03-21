@@ -1,0 +1,18 @@
+This project is created in eclipse(Copyright) and based on Maven(Copyright), osgi(Copyright) technologies.
+The project's compile environment needs Internet connection.
+
+===============================================
+To compile this project. You need to install
+
+	1. jdk
+	2. maven
+	3. latex environment(MikTex recommended in windows)
+	
+After prepared, run on command
+	
+	$ mvn clean deploy -DreleaseDir="<release dir>"
+
+The command is capable both in window and Linux. The default releaseDir is "I:\release".
+================================================
+
+call me yage
