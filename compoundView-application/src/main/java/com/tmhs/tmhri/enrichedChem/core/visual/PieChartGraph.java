@@ -116,10 +116,7 @@ public class PieChartGraph implements CyCustomGraphics<NodeImageLayer> {
 		}
 		List<NodeImageLayer> result = new ArrayList<NodeImageLayer>();
 		result.add(layer);
-		if (row.get(CyNetwork.SELECTED, Boolean.class))
-			layer.highLight(true);
-		else
-			layer.highLight(false);
+		//layer.highLight(row.get(CyNetwork.SELECTED, Boolean.class));
 		return result;
 	}
 

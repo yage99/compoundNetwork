@@ -25,7 +25,7 @@ import com.tmhs.tmhri.enrichedChem.core.NotEnrichedException;
  * 
  */
 public class SelectGraphListener implements RowsSetListener {
-	private List<CyNode> lastSelect = new ArrayList<CyNode>();
+	// private List<CyNode> lastSelect = new ArrayList<CyNode>();
 
 	/*
 	 * (non-Javadoc)
@@ -48,16 +48,19 @@ public class SelectGraphListener implements RowsSetListener {
 			// Long.class)));
 			// }
 			CyNetworkView nv = network.getNetworkView();
-			List<CyNode> nodeSelect = network.getSelectedNodes();
-			for (CyNode node : lastSelect) {
-				EnrichedNetwork.highLight(nv.getNodeView(node), false);
-			}
+			List<CyNode> nodeSelect = new ArrayList<CyNode>();
+			// for (CyNode node : lastSelect) {
+			// EnrichedNetwork.highLight(nv.getNodeView(node), false);
+			// }
 			// List<CyNode> records = new ArrayList<CyNode>();
 			for (RowSetRecord record : records) {
 				long id = record.getRow().get("SUID", Long.class);
 				CyNode node = network.getNode(id);
 				if (node != null) {
+					if ((boolean) record.getValue())
+						nodeSelect.add(node);
 					View<CyNode> currentNodeView = nv.getNodeView(node);
+					// TODO highlight node has bug
 					EnrichedNetwork.highLight(currentNodeView,
 							(boolean) record.getValue());
 					// if ((boolean) record.getValue())
@@ -70,7 +73,7 @@ public class SelectGraphListener implements RowsSetListener {
 			SearchResultPanel.setTable(nodeSelect, network);
 			network.updateView();
 
-			lastSelect = nodeSelect;
+			// lastSelect = nodeSelect;
 		} catch (NotEnrichedException e1) {
 			e1.printStackTrace();
 		}

@@ -277,8 +277,10 @@ public class EnrichedChemPlugin extends AbstractCyActivator {
 				new MenuAction(getService(bc, CySwingApplication.class),
 						null, searchPanel), CyAction.class,
 				new Properties());
-		registerService(bc, new SelectGraphListener(), RowsSetListener.class,
-				new Properties());
+		// this service highlight piechart when nodes are selected
+		// TODO highlight will be removed from current version
+		//registerService(bc, new SelectGraphListener(), RowsSetListener.class,
+			//	new Properties());
 
 		registerService(bc, new PieChartFactory(),
 				CyCustomGraphicsFactory.class, new Properties());

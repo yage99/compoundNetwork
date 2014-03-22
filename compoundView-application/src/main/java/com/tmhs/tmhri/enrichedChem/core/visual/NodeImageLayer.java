@@ -39,6 +39,7 @@ public class NodeImageLayer implements ImageCustomGraphicLayer {
 	Rectangle2D defaultBound;
 	private int width;
 	private int height;
+	private boolean highLight = false;
 	/**
 	 * 
 	 */
@@ -225,6 +226,8 @@ public class NodeImageLayer implements ImageCustomGraphicLayer {
 	 * @see
 	 * org.cytoscape.view.presentation.customgraphics.ImageCustomGraphicLayer
 	 * #getPaint(java.awt.geom.Rectangle2D)
+	 * 
+	 * this method will be called every time when refresh network view
 	 */
 	@Override
 	public TexturePaint getPaint(Rectangle2D bounds) {
@@ -238,6 +241,10 @@ public class NodeImageLayer implements ImageCustomGraphicLayer {
 			reDrawImage(bounds);
 		}
 
+		if (highLight)
+			result = highlightTexture;
+		else
+			result = texture;
 		return result;
 	}
 
@@ -245,10 +252,7 @@ public class NodeImageLayer implements ImageCustomGraphicLayer {
 	 * @param highLight
 	 */
 	public void highLight(boolean highLight) {
-		if (highLight)
-			result = highlightTexture;
-		else
-			result = texture;
+		this.highLight = highLight;
 	}
 
 }
