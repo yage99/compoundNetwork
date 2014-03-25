@@ -157,7 +157,7 @@
 			</plugin>
 
 			<!-- upload jar file to sourceforge release folder -->
-			<!-- removed because poor internet connection -->
+			<!-- removed because poor Internet connection in China -->
 			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>wagon-maven-plugin</artifactId> 
 				<version>1.0-beta-4</version> <executions> <execution> <id>release</id> <phase>deploy</phase> 
 				<goals> <goal>upload</goal> </goals> <configuration> <fromDir>target/</fromDir> 
