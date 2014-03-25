@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>tmhs.cytoscape</groupId>
 		<artifactId>compoundView-parent</artifactId>
-		<version>2.3.2-SNAPSHOT</version>
+		<version>2.3.2</version>
 	</parent>
 	<artifactId>Samples</artifactId>
 	<packaging>pom</packaging>
