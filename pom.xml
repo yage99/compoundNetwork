@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>tmhs.cytoscape</groupId>
 	<artifactId>compoundView-parent</artifactId>
@@ -98,13 +99,6 @@
 		</dependency>
 	</dependencies>
 
-	<!-- <build> <plugins> <plugin> <groupId>com.github.github</groupId> <artifactId>downloads-maven-plugin</artifactId> 
-		<version>0.6</version> <configuration> <description>${project.version} release 
-		of ${project.name}</description> <override>true</override> <includeAttached>true</includeAttached> 
-		<userName>zhangya998@gmail.com</userName> <password>woshiyygg336</password> 
-		<repositoryName>https://github.com/yage99/chemlib.git</repositoryName> <repositoryName>chemlib</repositoryName> 
-		</configuration> <executions> <execution> <goals> <goal>upload</goal> </goals> 
-		<phase>install</phase> </execution> </executions> </plugin> </plugins> </build> -->
 	<scm>
 		<connection>
 			scm:git:https://github.com/yage99/compoundNetwork.git
@@ -112,8 +106,8 @@
 		<developerConnection>
 			scm:git:https://github.com/yage99/compoundNetwork.git
 		</developerConnection>
-	  <tag>HEAD</tag>
-  </scm>
+		<tag>HEAD</tag>
+	</scm>
 	<build>
 		<plugins>
 			<plugin>
@@ -149,23 +143,79 @@
 				<toDir>./</toDir> </configuration> </execution> </executions> <dependencies> 
 				<dependency> <groupId>org.apache.maven.wagon</groupId> <artifactId>wagon-ssh</artifactId> 
 				<version>2.4</version> </dependency> </dependencies> </plugin> -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>timestamp-property</id>
+						<goals>
+							<goal>timestamp-property</goal>
+						</goals>
+						<configuration>
+							<name>timestamp</name>
+							<locale>en,US</locale>
+							<pattern>EEE, MMM dd, yyyy</pattern>
+						</configuration>
+					</execution>
+				</executions>
+
+			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											build-helper-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.8,)
+										</versionRange>
+										<goals>
+											<goal>
+												timestamp-property
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 	<properties>
 		<!-- # List of authors. Note each author and institution pair are separated 
 			by a : (colon) # each additional author institution pair must be separated 
 			from other pairs bye a ; (semicolon) -->
-		<developerList>ya zhang, yzhang2@tmhs.org:TMHRI</developerList>
+		<developerList>ya zhang, zhangya@mail.ustc.edu.cn:USTC</developerList>
 		<cyVersion>3.1.0</cyVersion>
 		<projectName>EnrichedChemPlugin</projectName>
-		<maven.build.timestamp.format>MMM dd, yyyy</maven.build.timestamp.format>
-		<timestamp>${maven.build.timestamp}</timestamp>
 		<releaseVersion>${project.version}</releaseVersion>
 		<description>&lt;p&gt;Get a enriched view combined with experiment
 			result and compound similarity.&lt;/p&gt;</description>
 		<url>null</url>
 		<releaseDir>I:/release/${project.version}</releaseDir>
-		<EnCoding>UTF-8</EnCoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<osgi.api.version>4.2.0</osgi.api.version>
 	</properties>
 	<version>2.3.3-SNAPSHOT</version>
