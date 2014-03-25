@@ -5,7 +5,6 @@ package com.tmhs.tmhri.enrichedChem.ui;
 
 import org.tmhs.tool.yage.Info.NoticeSystem;
 
-import com.tmhs.tmhri.enrichedChem.ControlPanel;
 
 /**
  * @author ya

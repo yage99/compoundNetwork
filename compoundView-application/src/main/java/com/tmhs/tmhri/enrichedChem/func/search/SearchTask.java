@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tmhs.tmhri.enrichedChem.core.process;
+package com.tmhs.tmhri.enrichedChem.func.search;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,15 +17,15 @@ import com.tmhs.database.DAO.DrugDAO;
 import com.tmhs.database.DTO.Drug;
 import com.tmhs.database.DTO.PubChemDrug;
 import com.tmhs.database.frame.DAOManager;
-import com.tmhs.tmhri.enrichedChem.ControlPanel;
+import com.tmhs.tmhri.enrichedChem.config.EnrichParams;
+import com.tmhs.tmhri.enrichedChem.config.InputParams;
+import com.tmhs.tmhri.enrichedChem.config.InputParams.Params;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
-import com.tmhs.tmhri.enrichedChem.core.defines.EnrichParams;
-import com.tmhs.tmhri.enrichedChem.core.defines.InputParams;
-import com.tmhs.tmhri.enrichedChem.core.defines.InputParams.Params;
-import com.tmhs.tmhri.enrichedChem.core.fileparsers.CompoundLibReader;
+import com.tmhs.tmhri.enrichedChem.fileparsers.CompoundLibReader;
 import com.tmhs.tmhri.enrichedChem.task.EnAbstractTask;
 import com.tmhs.tmhri.enrichedChem.task.ThreadManager;
 import com.tmhs.tmhri.enrichedChem.task.ThreadRunner;
+import com.tmhs.tmhri.enrichedChem.ui.ControlPanel;
 import com.tmhs.yage.api.NIH.PubChemCompound;
 
 /**

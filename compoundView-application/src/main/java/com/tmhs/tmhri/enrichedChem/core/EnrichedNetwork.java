@@ -21,16 +21,16 @@ import org.cytoscape.work.TaskIterator;
 
 import com.tmhs.database.DTO.PubChemDrug;
 import com.tmhs.tmhri.enrichedChem.EnrichedChemPlugin;
-import com.tmhs.tmhri.enrichedChem.SearchResultPanel;
-import com.tmhs.tmhri.enrichedChem.core.defines.EnrichParams;
-import com.tmhs.tmhri.enrichedChem.core.defines.FileType;
+import com.tmhs.tmhri.enrichedChem.config.EnrichParams;
+import com.tmhs.tmhri.enrichedChem.config.FileType;
 import com.tmhs.tmhri.enrichedChem.core.process.DrawEdgesTask;
 import com.tmhs.tmhri.enrichedChem.core.process.DrawNodesTask;
-import com.tmhs.tmhri.enrichedChem.core.process.SearchTask;
 import com.tmhs.tmhri.enrichedChem.core.process.UpdateEdgeTask;
 import com.tmhs.tmhri.enrichedChem.core.process.ViewRedrawTask;
-import com.tmhs.tmhri.enrichedChem.core.visual.MoreVisualLexicon;
-import com.tmhs.tmhri.enrichedChem.core.visual.PieChartGraph;
+import com.tmhs.tmhri.enrichedChem.func.search.SearchResultPanel;
+import com.tmhs.tmhri.enrichedChem.func.search.SearchTask;
+import com.tmhs.tmhri.enrichedChem.visual.MoreVisualLexicon;
+import com.tmhs.tmhri.enrichedChem.visual.PieChartGraph;
 
 /**
  * @author TMHYXZ6

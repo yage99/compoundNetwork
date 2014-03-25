@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tmhs.tmhri.enrichedChem.core.fileparsers;
+package com.tmhs.tmhri.enrichedChem.fileparsers;
 
 import java.io.BufferedReader;
 import java.io.File;

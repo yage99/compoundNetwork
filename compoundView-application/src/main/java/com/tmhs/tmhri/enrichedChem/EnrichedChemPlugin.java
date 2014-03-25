@@ -45,11 +45,13 @@ import com.tmhs.tmhri.enrichedChem.actionAndListerner.MenuAction;
 import com.tmhs.tmhri.enrichedChem.actionAndListerner.SelectGraphListener;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
 import com.tmhs.tmhri.enrichedChem.core.NotEnrichedException;
-import com.tmhs.tmhri.enrichedChem.core.visual.LayoutAlgorithmManager;
-import com.tmhs.tmhri.enrichedChem.core.visual.PieChartFactory;
-import com.tmhs.tmhri.enrichedChem.core.visual.ViewStyleManager;
+import com.tmhs.tmhri.enrichedChem.func.search.SearchResultPanel;
 import com.tmhs.tmhri.enrichedChem.task.EnAbstractTask;
 import com.tmhs.tmhri.enrichedChem.task.ThreadManager;
+import com.tmhs.tmhri.enrichedChem.ui.ControlPanel;
+import com.tmhs.tmhri.enrichedChem.visual.LayoutAlgorithmManager;
+import com.tmhs.tmhri.enrichedChem.visual.PieChartFactory;
+import com.tmhs.tmhri.enrichedChem.visual.ViewStyleManager;
 
 /**
  * @author TMHYXZ6

@@ -22,15 +22,15 @@ import org.tmhs.yage.api.fileFormat.CDTFile;
 import org.tmhs.yage.api.fileFormat.ClusterTreeNode;
 import org.tmhs.yage.api.fileFormat.PermutedCMAPResult;
 
-import com.tmhs.tmhri.enrichedChem.ControlPanel;
 import com.tmhs.tmhri.enrichedChem.EnrichConfig;
 import com.tmhs.tmhri.enrichedChem.EnrichedChemPlugin;
+import com.tmhs.tmhri.enrichedChem.config.EnrichParams;
+import com.tmhs.tmhri.enrichedChem.config.FileType;
+import com.tmhs.tmhri.enrichedChem.config.InputParams;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
-import com.tmhs.tmhri.enrichedChem.core.defines.EnrichParams;
-import com.tmhs.tmhri.enrichedChem.core.defines.FileType;
-import com.tmhs.tmhri.enrichedChem.core.defines.InputParams;
-import com.tmhs.tmhri.enrichedChem.core.fileparsers.CMAPFile;
+import com.tmhs.tmhri.enrichedChem.fileparsers.CMAPFile;
 import com.tmhs.tmhri.enrichedChem.task.EnAbstractTask;
+import com.tmhs.tmhri.enrichedChem.ui.ControlPanel;
 
 /**
  * @author TMHYXZ6

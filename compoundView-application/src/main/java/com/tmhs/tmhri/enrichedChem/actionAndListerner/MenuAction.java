@@ -11,10 +11,10 @@ import org.cytoscape.application.swing.CytoPanel;
 import org.cytoscape.application.swing.CytoPanelName;
 import org.cytoscape.application.swing.CytoPanelState;
 
-import com.tmhs.tmhri.enrichedChem.ControlPanel;
 import com.tmhs.tmhri.enrichedChem.EnrichedChemPlugin;
-import com.tmhs.tmhri.enrichedChem.SearchResultPanel;
-import com.tmhs.tmhri.enrichedChem.core.defines.FileType;
+import com.tmhs.tmhri.enrichedChem.config.FileType;
+import com.tmhs.tmhri.enrichedChem.func.search.SearchResultPanel;
+import com.tmhs.tmhri.enrichedChem.ui.ControlPanel;
 
 /**
  * @author TMHYXZ6

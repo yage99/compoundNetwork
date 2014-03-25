@@ -1,14 +1,13 @@
 /**
  * 
  */
-package com.tmhs.tmhri.enrichedChem.core.visual;
+package com.tmhs.tmhri.enrichedChem.visual;
 
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.cytoscape.model.CyIdentifiable;
-import org.cytoscape.model.CyNetwork;
 import org.cytoscape.model.CyRow;
 import org.cytoscape.model.CyTable;
 import org.cytoscape.view.model.CyNetworkView;

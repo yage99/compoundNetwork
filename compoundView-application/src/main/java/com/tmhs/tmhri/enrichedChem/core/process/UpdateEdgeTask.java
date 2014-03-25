@@ -10,8 +10,9 @@ import java.util.Map;
 
 import org.cytoscape.model.CyEdge;
 import org.cytoscape.work.TaskMonitor;
+
+import com.tmhs.tmhri.enrichedChem.config.EnrichParams;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
-import com.tmhs.tmhri.enrichedChem.core.defines.EnrichParams;
 import com.tmhs.tmhri.enrichedChem.task.EnAbstractTask;
 
 /**

@@ -16,8 +16,8 @@ import org.cytoscape.model.events.RowsSetListener;
 import org.tmhs.tool.yage.Info.NoticeSystem;
 
 import com.tmhs.tmhri.enrichedChem.EnrichedChemPlugin;
-import com.tmhs.tmhri.enrichedChem.SearchResultPanel;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
+import com.tmhs.tmhri.enrichedChem.func.search.SearchResultPanel;
 
 /**
  * @author TMHYXZ6

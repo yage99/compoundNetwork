@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tmhs.tmhri.enrichedChem.core.defines;
+package com.tmhs.tmhri.enrichedChem.config;
 
 /**
  * @author ya

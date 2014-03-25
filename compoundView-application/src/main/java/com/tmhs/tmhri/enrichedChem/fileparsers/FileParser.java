@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tmhs.tmhri.enrichedChem.core.fileparsers;
+package com.tmhs.tmhri.enrichedChem.fileparsers;
 
 import org.cytoscape.work.Task;
 

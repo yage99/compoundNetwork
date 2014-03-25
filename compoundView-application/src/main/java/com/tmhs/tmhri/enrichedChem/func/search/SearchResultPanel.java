@@ -1,29 +1,22 @@
 /**
  * 
  */
-package com.tmhs.tmhri.enrichedChem;
+package com.tmhs.tmhri.enrichedChem.func.search;
 
 import java.awt.Component;
-import java.awt.EventQueue;
-import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-import java.util.Map;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.Icon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableColumn;
 
@@ -33,12 +26,11 @@ import org.cytoscape.model.CyNode;
 import org.tmhs.tool.yage.Info.NoticeSystem;
 
 import com.tmhs.database.DTO.PubChemDrug;
+import com.tmhs.tmhri.enrichedChem.EnrichedChemPlugin;
+import com.tmhs.tmhri.enrichedChem.config.EnrichParams;
+import com.tmhs.tmhri.enrichedChem.config.InputParams;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
 import com.tmhs.tmhri.enrichedChem.core.NotEnrichedException;
-import com.tmhs.tmhri.enrichedChem.core.defines.EnrichParams;
-import com.tmhs.tmhri.enrichedChem.core.defines.InputParams;
-import com.tmhs.tmhri.enrichedChem.core.process.SearchTask;
-import com.tmhs.tmhri.enrichedChem.ui.ImgShower;
 
 import javax.swing.ScrollPaneConstants;
 
@@ -54,7 +46,7 @@ public class SearchResultPanel extends JPanel implements CytoPanelComponent {
 	private static JTable table;
 	static SearchResultTableModel tableModel = new SearchResultTableModel();
 	static DefaultTableColumnModel columnModel = new DefaultTableColumnModel();
-	JList<String> list = new JList<String>();
+	static JList<String> synoListPanel = new JList<String>();
 	static ImageShow img;
 	static EnrichedNetwork network;
 
@@ -65,36 +57,7 @@ public class SearchResultPanel extends JPanel implements CytoPanelComponent {
 
 		table = new JTable();
 		table.setFillsViewportHeight(true);
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				CyNode node = tableModel.getParent(table.getSelectedColumn());
-				PubChemDrug drug = tableModel.getDrug(table.getSelectedRow(),
-						node);
-				List<String> synos = drug.getSynos();
-				if (synos == null)
-					list.setListData(new String[] {});
-				else {
-					list.setListData(synos.toArray(new String[0]));
-				}
-				img.setImg(drug);
-				if (e.getClickCount() == 2) {
-					List<PubChemDrug> columnList = tableModel.getColumn(node);
-					int cellNum = table.getSelectedRow();
-					if (cellNum < columnList.size()) {
-						PubChemDrug selected = columnList.remove(columnList
-								.size() - cellNum - 1);
-						columnList.add(selected);
-					}
-
-					SearchTask.setNodeDrug(network, node, drug);
-					tableModel.fireTableDataChanged();
-					table.repaint();
-
-				}
-
-			}
-		});
+		table.addMouseListener(new SearchResultAction(this));
 		table.setCellSelectionEnabled(true);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setRowSelectionAllowed(false);
@@ -111,7 +74,7 @@ public class SearchResultPanel extends JPanel implements CytoPanelComponent {
 
 		JPanel panel_2 = new JPanel();
 
-		JScrollPane scrollPane_1 = new JScrollPane(list);
+		JScrollPane scrollPane_1 = new JScrollPane(synoListPanel);
 
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(gl_panel_2.createParallelGroup(
@@ -216,6 +179,9 @@ public class SearchResultPanel extends JPanel implements CytoPanelComponent {
 	}
 
 	/**
+	 * This function set the network currently being managed by search result
+	 * panel.
+	 * 
 	 * @param nodes
 	 * @param network
 	 */
@@ -298,127 +264,32 @@ public class SearchResultPanel extends JPanel implements CytoPanelComponent {
 	public Icon getIcon() {
 		return null;
 	}
-}
-
-class SearchResultTableModel extends AbstractTableModel {
-
-	Map<CyNode, List<PubChemDrug>> result;
-	int row = 0;
-	int column = 0;
-	private List<CyNode> nodeList;
 
 	/**
-	 * 
+	 * @return get table panel of search result panel
 	 */
-	private static final long serialVersionUID = -2370148716805867010L;
-
-	public SearchResultTableModel() {
-
+	public static JTable getTable() {
+		return table;
 	}
 
-	public void refreshTable(Map<CyNode, List<PubChemDrug>> map,
-			List<CyNode> nodeList) {
-		this.result = map;
-		this.nodeList = nodeList;
-
-		updateTable(map);
+	/**
+	 * @return the current drug's synos list
+	 */
+	public static JList<String> getSynoListPanel() {
+		return synoListPanel;
 	}
 
-	private void updateTable(Map<CyNode, List<PubChemDrug>> map) {
-		column = 0;
-		row = 0;
-		for (CyNode key : map.keySet()) {
-			List<PubChemDrug> list = map.get(key);
-			column++;
-			if (list != null) {
-				if (row < list.size())
-					row = list.size();
-			}
-		}
-
+	/**
+	 * @return search panel's image panel
+	 */
+	public static ImageShow getImagePanel() {
+		return img;
 	}
 
-	@Override
-	public int getRowCount() {
-		return row;
-	}
-
-	@Override
-	public int getColumnCount() {
-		return column;
-	}
-
-	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		List<PubChemDrug> line = result.get(nodeList.get(columnIndex));
-		if (line == null)
-			return null;
-		if (rowIndex < line.size()) {
-			List<String> synos = line.get(line.size() - rowIndex - 1)
-					.getSynos();
-			if (synos.size() == 0)
-				return "[]";
-			else
-				return synos.get(0);
-		}
-		return null;
-	}
-
-	public CyNode getParent(int columnIndex) {
-		return nodeList.get(columnIndex);
-	}
-
-	public List<PubChemDrug> getColumn(CyNode node) {
-		return result.get(node);
-	}
-
-	public PubChemDrug getDrug(int rowIndex, CyNode node) {
-		List<PubChemDrug> line = result.get(node);
-		if (rowIndex < line.size())
-			return line.get(line.size() - rowIndex - 1);
-		return null;
-	}
-};
-
-class ImageShow {
-
-	JLabel lblImg = new JLabel("img");
-	JLabel lblName = new JLabel("name");
-
-	ImgShower frame = new ImgShower();
-
-	public ImageShow(JPanel panel) {
-		lblImg.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImg.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				EventQueue.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						try {
-							frame.setImg(lblImg.getToolTipText(),
-									lblName.getText());
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
-			}
-		});
-		lblImg.setBounds(new Rectangle(0, 6, 270, 270));
-
-		lblName.setBounds(0, 0, 270, 16);
-
-		panel.add(lblName);
-		panel.add(lblImg);
-	}
-
-	void setImg(PubChemDrug drug) {
-		lblImg.setText("Loading...");
-		lblImg.setText("<html><img width=182 height=182 src=\""
-				+ drug.getStructure() + "\" /></html>");
-		lblImg.setToolTipText(drug.getStructure());
-
-		lblName.setText(drug.getSynos().get(0));
+	/**
+	 * @return current network search result managed
+	 */
+	public EnrichedNetwork getNetwork() {
+		return network;
 	}
 }

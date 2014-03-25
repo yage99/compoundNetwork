@@ -16,9 +16,9 @@ import org.cytoscape.view.model.CyNetworkView;
 import org.cytoscape.view.model.View;
 
 import com.tmhs.tmhri.enrichedChem.EnrichedChemPlugin;
-import com.tmhs.tmhri.enrichedChem.SearchResultPanel;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
 import com.tmhs.tmhri.enrichedChem.core.NotEnrichedException;
+import com.tmhs.tmhri.enrichedChem.func.search.SearchResultPanel;
 
 /**
  * @author ya

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tmhs.tmhri.enrichedChem.core.visual;
+package com.tmhs.tmhri.enrichedChem.visual;
 
 import java.awt.Color;
 import java.awt.Image;

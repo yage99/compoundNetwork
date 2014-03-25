@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tmhs.tmhri.enrichedChem;
+package com.tmhs.tmhri.enrichedChem.ui;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -48,14 +48,15 @@ import org.cytoscape.application.swing.CytoPanelName;
 import org.cytoscape.view.model.CyNetworkView;
 import org.tmhs.tool.yage.Info.NoticeSystem;
 
+import com.tmhs.tmhri.enrichedChem.EnrichedChemPlugin;
+import com.tmhs.tmhri.enrichedChem.Props;
 import com.tmhs.tmhri.enrichedChem.actionAndListerner.DrawEdgeActions;
 import com.tmhs.tmhri.enrichedChem.actionAndListerner.SearchButtonActions;
+import com.tmhs.tmhri.enrichedChem.config.FileType;
+import com.tmhs.tmhri.enrichedChem.config.InputParams;
+import com.tmhs.tmhri.enrichedChem.config.InputParams.Params;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
 import com.tmhs.tmhri.enrichedChem.core.NotEnrichedException;
-import com.tmhs.tmhri.enrichedChem.core.defines.FileType;
-import com.tmhs.tmhri.enrichedChem.core.defines.InputParams;
-import com.tmhs.tmhri.enrichedChem.core.defines.InputParams.Params;
-import com.tmhs.tmhri.enrichedChem.ui.StatusPanel;
 
 /**
  * @author TMHYXZ6
@@ -386,9 +387,15 @@ public class ControlPanel extends JPanel implements CytoPanelComponent {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				NoticeSystem.getInstance().notice("start parsing file...");
-				// Read file
-				new EnrichedNetwork(filename.getText(), (FileType) model
-						.getSelectedItem());
+				File file = new File(filename.getText());
+				if (file.exists() && file.isFile())
+					// Read file
+					new EnrichedNetwork(filename.getText(), (FileType) model
+							.getSelectedItem());
+				else {
+					JOptionPane.showMessageDialog(ControlPanel.self,
+							"Not a valid file");
+				}
 				// allManager.addTask(new DrawNodes());
 				// progressBar.setIndeterminate(true);
 			}

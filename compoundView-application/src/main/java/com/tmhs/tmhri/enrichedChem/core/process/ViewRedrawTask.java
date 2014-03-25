@@ -9,9 +9,9 @@ import org.cytoscape.work.TaskMonitor;
 
 import com.tmhs.tmhri.enrichedChem.EnrichedChemPlugin;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
-import com.tmhs.tmhri.enrichedChem.core.visual.LayoutAlgorithmManager;
-import com.tmhs.tmhri.enrichedChem.core.visual.ViewStyleManager;
 import com.tmhs.tmhri.enrichedChem.task.EnAbstractTask;
+import com.tmhs.tmhri.enrichedChem.visual.LayoutAlgorithmManager;
+import com.tmhs.tmhri.enrichedChem.visual.ViewStyleManager;
 
 /**
  * @author ya

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tmhs.tmhri.enrichedChem.core.visual;
+package com.tmhs.tmhri.enrichedChem.visual;
 
 import org.cytoscape.view.model.CyNetworkView;
 import org.cytoscape.view.presentation.property.BasicVisualLexicon;
@@ -10,7 +10,7 @@ import org.cytoscape.view.vizmap.VisualMappingFunctionFactory;
 import org.cytoscape.view.vizmap.VisualMappingManager;
 import org.cytoscape.view.vizmap.VisualStyle;
 
-import com.tmhs.tmhri.enrichedChem.core.defines.EnrichParams;
+import com.tmhs.tmhri.enrichedChem.config.EnrichParams;
 
 /**
  * @author ya

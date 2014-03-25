@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tmhs.tmhri.enrichedChem.core.visual;
+package com.tmhs.tmhri.enrichedChem.visual;
 
 import org.cytoscape.model.CyNode;
 import org.cytoscape.view.model.NullDataType;

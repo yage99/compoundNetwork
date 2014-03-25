@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.tmhs.tmhri.enrichedChem.core.defines;
+package com.tmhs.tmhri.enrichedChem.config;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tmhs.tmhri.enrichedChem.ControlPanel;
-import com.tmhs.tmhri.enrichedChem.core.fileparsers.FileParser;
+import com.tmhs.tmhri.enrichedChem.fileparsers.FileParser;
+import com.tmhs.tmhri.enrichedChem.ui.ControlPanel;
 
 /**
  * @author ya
