@@ -112,7 +112,7 @@
 		<developerConnection>
 			scm:git:https://github.com/yage99/compoundNetwork.git
 		</developerConnection>
-	  <tag>compoundView-parent-2.3.2</tag>
+	  <tag>HEAD</tag>
   </scm>
 	<build>
 		<plugins>
@@ -168,7 +168,7 @@
 		<EnCoding>UTF-8</EnCoding>
 		<osgi.api.version>4.2.0</osgi.api.version>
 	</properties>
-	<version>2.3.2</version>
+	<version>2.3.3-SNAPSHOT</version>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
