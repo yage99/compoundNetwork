@@ -108,10 +108,10 @@
 		<phase>install</phase> </execution> </executions> </plugin> </plugins> </build> -->
 	<scm>
 		<connection>
-			scm:svn:https://svn.code.sf.net/p/chemenrich/code-0/trunk
+			scm:git:https://github.com/yage99/compoundNetwork.git
 		</connection>
 		<developerConnection>
-			scm:svn:https://svn.code.sf.net/p/chemenrich/code-0/trunk
+			scm:git:https://github.com/yage99/compoundNetwork.git
 		</developerConnection>
 	</scm>
 	<build>
@@ -121,7 +121,6 @@
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.4.1</version>
 				<configuration>
-					<tagBase>https://svn.code.sf.net/p/chemenrich/code-0/tags/</tagBase>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 				</configuration>
 			</plugin>
@@ -143,36 +142,13 @@
 			</plugin>
 
 			<!-- upload all readme -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>wagon-maven-plugin</artifactId>
-				<version>1.0-beta-4</version>
-				<inherited>false</inherited>
-				<executions>
-					<execution>
-						<id>release</id>
-						<phase>deploy</phase>
-						<goals>
-							<goal>upload</goal>
-						</goals>
-						<configuration>
-							<fromDir>./</fromDir>
-							<includes>
-								README
-							</includes>
-							<url>sftp://zhangya998,chemenrich@frs.sourceforge.net:/home/frs/project/c/ch/chemenrich/</url>
-							<toDir>./</toDir>
-						</configuration>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.apache.maven.wagon</groupId>
-						<artifactId>wagon-ssh</artifactId>
-						<version>2.4</version>
-					</dependency>
-				</dependencies>
-			</plugin>
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>wagon-maven-plugin</artifactId> 
+				<version>1.0-beta-4</version> <inherited>false</inherited> <executions> <execution> 
+				<id>release</id> <phase>deploy</phase> <goals> <goal>upload</goal> </goals> 
+				<configuration> <fromDir>./</fromDir> <includes> README </includes> <url>sftp://zhangya998,chemenrich@frs.sourceforge.net:/home/frs/project/c/ch/chemenrich/</url> 
+				<toDir>./</toDir> </configuration> </execution> </executions> <dependencies> 
+				<dependency> <groupId>org.apache.maven.wagon</groupId> <artifactId>wagon-ssh</artifactId> 
+				<version>2.4</version> </dependency> </dependencies> </plugin> -->
 		</plugins>
 	</build>
 	<properties>
