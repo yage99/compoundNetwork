@@ -3,6 +3,8 @@
  */
 package com.tmhs.database.mongodb.DAOImpl;
 
+import java.net.UnknownHostException;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
@@ -16,9 +18,10 @@ import com.tmhs.database.Mongo.Collection;
 public class SigmaDAOImpl extends Collection implements SigmaDAO {
 
 	/**
+	 * @throws UnknownHostException 
 	 * 
 	 */
-	public SigmaDAOImpl() {
+	public SigmaDAOImpl() throws UnknownHostException {
 		super("sigma");
 	}
 

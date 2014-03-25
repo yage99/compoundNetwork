@@ -25,7 +25,6 @@ import org.cytoscape.model.CyNetworkManager;
 import org.cytoscape.model.CyNode;
 import org.cytoscape.model.CyRow;
 import org.cytoscape.model.CyTable;
-import org.cytoscape.model.events.RowsSetListener;
 import org.cytoscape.service.util.AbstractCyActivator;
 import org.cytoscape.session.CyNetworkNaming;
 import org.cytoscape.view.layout.CyLayoutAlgorithmManager;
@@ -42,7 +41,6 @@ import org.cytoscape.work.TaskIterator;
 import org.osgi.framework.BundleContext;
 
 import com.tmhs.tmhri.enrichedChem.actionAndListerner.MenuAction;
-import com.tmhs.tmhri.enrichedChem.actionAndListerner.SelectGraphListener;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
 import com.tmhs.tmhri.enrichedChem.core.NotEnrichedException;
 import com.tmhs.tmhri.enrichedChem.func.search.SearchResultPanel;

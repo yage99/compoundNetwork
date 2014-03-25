@@ -13,6 +13,7 @@ import org.cytoscape.model.CyTable;
 import org.cytoscape.work.TaskMonitor;
 import org.tmhs.tool.yage.Info.NoticeSystem;
 
+import com.tmhs.database.main.PubChemWithStream;
 import com.tmhs.tmhri.enrichedChem.config.EnrichParams;
 import com.tmhs.tmhri.enrichedChem.config.InputParams;
 import com.tmhs.tmhri.enrichedChem.config.InputParams.Params;
@@ -22,7 +23,6 @@ import com.tmhs.tmhri.enrichedChem.task.EnAbstractTask;
 import com.tmhs.tmhri.enrichedChem.task.ThreadManager;
 import com.tmhs.tmhri.enrichedChem.task.ThreadRunner;
 import com.tmhs.tmhri.enrichedChem.ui.ControlPanel;
-import com.tmhs.yage.api.NIH.PubChemCompound;
 import com.tmhs.yage.api.NIH.DTO.PubChemDrug;
 
 /**
@@ -217,7 +217,7 @@ class CompoundSearch extends ThreadRunner {
 	@Override
 	public void run() {
 		try {
-			comps = PubChemCompound.searchCompound(name);
+			comps = PubChemWithStream.searchCompound(name);
 		} catch (Exception e) {
 			this.setError();
 			NoticeSystem.getInstance().warning(e.getMessage());

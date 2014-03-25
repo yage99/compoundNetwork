@@ -3,6 +3,8 @@
  */
 package com.tmhs.database.mongodb.DAOImpl;
 
+import java.net.UnknownHostException;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
@@ -19,8 +21,9 @@ public class CompoundSimilarityDAOImpl extends Collection implements
 		CompoundSimilarityDAO {
 
 	/**
+	 * @throws UnknownHostException 
 	 */
-	public CompoundSimilarityDAOImpl() {
+	public CompoundSimilarityDAOImpl() throws UnknownHostException {
 		super("CompoundSimilarity");
 	}
 

@@ -3,6 +3,8 @@
  */
 package com.tmhs.database.mongodb.DAOImpl;
 
+import java.net.UnknownHostException;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
@@ -16,8 +18,9 @@ import com.tmhs.database.Mongo.Collection;
 public class SpectrumDAOImpl extends Collection implements SpectrumDAO {
 
 	/**
+	 * @throws UnknownHostException 
 	 */
-	public SpectrumDAOImpl() {
+	public SpectrumDAOImpl() throws UnknownHostException {
 		super("spectrum");
 	}
 

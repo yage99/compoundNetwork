@@ -3,6 +3,7 @@
  */
 package com.tmhs.database.mongodb.DAOImpl;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +24,9 @@ public class ProcedExperimentsDAOImpl extends Collection implements
 		ProcedExperimentsDAO {
 
 	/**
+	 * @throws UnknownHostException 
 	 */
-	public ProcedExperimentsDAOImpl() {
+	public ProcedExperimentsDAOImpl() throws UnknownHostException {
 		super("procedexperiments");
 	}
 

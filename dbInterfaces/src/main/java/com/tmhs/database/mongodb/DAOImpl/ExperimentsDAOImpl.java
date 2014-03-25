@@ -3,6 +3,7 @@
  */
 package com.tmhs.database.mongodb.DAOImpl;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +20,10 @@ import com.tmhs.database.Mongo.Collection;
 public class ExperimentsDAOImpl extends Collection implements ExperimentsDAO {
 
 	/**
+	 * @throws UnknownHostException 
 	 * 
 	 */
-	public ExperimentsDAOImpl() {
+	public ExperimentsDAOImpl() throws UnknownHostException {
 		super("experiments");
 	}
 

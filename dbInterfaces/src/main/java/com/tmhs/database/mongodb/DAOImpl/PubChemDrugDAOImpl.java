@@ -3,6 +3,8 @@
  */
 package com.tmhs.database.mongodb.DAOImpl;
 
+import java.net.UnknownHostException;
+
 import org.bson.types.ObjectId;
 
 import com.mongodb.BasicDBObject;
@@ -18,8 +20,9 @@ import com.tmhs.yage.api.NIH.DTO.PubChemDrug;
 public class PubChemDrugDAOImpl extends Collection implements PubChemDrugDAO {
 
 	/**
+	 * @throws UnknownHostException 
 	 */
-	public PubChemDrugDAOImpl() {
+	public PubChemDrugDAOImpl() throws UnknownHostException {
 		super("PubChem");
 	}
 

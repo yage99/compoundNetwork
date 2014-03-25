@@ -4,6 +4,7 @@
 package com.tmhs.database.mongodb.DAOImpl;
 
 import java.io.InputStream;
+import java.net.UnknownHostException;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -19,8 +20,9 @@ import com.tmhs.database.Mongo.Collection;
 public class FileManagerDAOImpl extends Collection implements FileManagerDAO {
 
 	/**
+	 * @throws UnknownHostException 
 	 */
-	public FileManagerDAOImpl() {
+	public FileManagerDAOImpl() throws UnknownHostException {
 		super(null);
 	}
 

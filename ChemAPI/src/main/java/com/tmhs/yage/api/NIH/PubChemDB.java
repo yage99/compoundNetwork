@@ -45,17 +45,17 @@ import com.tmhs.yage.api.NIH.xml.ResourceManager;
  * @author TMHYXZ6
  * 
  */
-public class PubChemCompound {
+public class PubChemDB {
 
 	/**
 	 * @param orgchemName
-	 * @return a list contains all possible compounds
+	 * @return a list contains all possible compounds' cid
 	 * @throws Exception
 	 */
-	public static List<PubChemDrug> searchCompound(String orgchemName)
+	public static List<String> searchCompound(String orgchemName)
 			throws Exception {
 		// System.out.print(".");
-		List<PubChemDrug> result = new ArrayList<PubChemDrug>();
+		List<String> result = new ArrayList<String>();
 
 		String chemName = orgchemName.replace(" ", "%20");
 		Response resps;
@@ -87,41 +87,31 @@ public class PubChemCompound {
 			}
 
 			Elements cids = doc.select("Id");
-			PubChemDrug bestMatch = null;
 			for (Element cid : cids) {
-				PubChemDrug drug = new PubChemDrug();
-				drug.setCid(cid.text());
-				result.add(drug);
-
-				PubChemInfo2 info = chemInfo(cid.text());
-				drug.setSynos(info.getSynonyms());
-				drug.setStructure("http://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?t=l&cid="
-						+ cid.text());
-				drug.setSmiles(info.getCanonicalSmiles());
-
-				if (info.getSynonyms().toString().contains(orgchemName))
-					bestMatch = drug;
-
-			}
-			if (bestMatch != null) {
-				result.remove(bestMatch);
-				result.add(bestMatch);
+				result.add(cid.text());
 			}
 
-		} catch (IOException e) {
-			throw new Exception("parse-\n" + resps.headers() + resps.body());
-		} catch (NullPointerException e) {
-			throw new Exception(
-					"number-error: "
-							+ ":url-http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pccompound&term="
-							+ chemName + "\n" + resps.body());
 		} catch (NumberFormatException e) {
-			throw new Exception(
-					"number-error: "
-							+ ":url-http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pccompound&term="
-							+ chemName + "\n" + resps.body());
+			throw new Exception("number-error: " + chemName);
 		}
 		return result;
+	}
+
+	/**
+	 * @param cid
+	 * @return get information of pubchem drug according to cid
+	 */
+	public static PubChemDrug getPubChemDrug(String cid) {
+		PubChemDrug drug = new PubChemDrug();
+		drug.setCid(cid);
+
+		PubChemInfo2 info = chemInfo(cid);
+		drug.setSynos(info.getSynonyms());
+		drug.setStructure("http://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?t=l&cid="
+				+ cid);
+		drug.setSmiles(info.getCanonicalSmiles());
+
+		return drug;
 	}
 
 	/**
@@ -235,9 +225,13 @@ public class PubChemCompound {
 	}
 
 	/**
+	 * @deprecated don't know what will happen
+	 * 
 	 * @param cids
 	 * @param descType
 	 * @throws Exception
+	 * 
+	 * 
 	 */
 	public static void downLoadCompoundStructure(List<String> cids,
 			CompoundDescType descType) throws Exception {
@@ -245,8 +239,8 @@ public class PubChemCompound {
 	}
 
 	/**
-	 * see
-	 * {@link #downLoadCompoundStructure(List, CompoundDescType, boolean, DownloadStructureCallBack, boolean)}
+	 * @deprecated don't know what will happen see
+	 *             {@link #downLoadCompoundStructure(List, CompoundDescType, boolean, DownloadStructureCallBack, boolean)}
 	 */
 	@SuppressWarnings("javadoc")
 	public static void downLoadCompoundStructure(List<String> cids,
@@ -256,6 +250,8 @@ public class PubChemCompound {
 	}
 
 	/**
+	 * @deprecated don't know what will happen
+	 * 
 	 * @param cids
 	 * @param descType
 	 * @param zip

@@ -9,8 +9,8 @@ import java.util.List;
 
 import org.dom4j.DocumentException;
 
-import com.tmhs.yage.api.NIH.PubChemCompound;
-import com.tmhs.yage.api.NIH.PubChemCompound.CompoundDescType;
+import com.tmhs.yage.api.NIH.PubChemDB;
+import com.tmhs.yage.api.NIH.PubChemDB.CompoundDescType;
 
 
 /**
@@ -27,7 +27,7 @@ public class Main {
 		for (int i = 1; i < 1000; i++)
 			cids.add(String.valueOf(i));
 		try {
-			PubChemCompound.downLoadCompoundStructure(cids,
+			PubChemDB.downLoadCompoundStructure(cids,
 					CompoundDescType.SMILES);
 		} catch (IOException e) {
 			e.printStackTrace();
