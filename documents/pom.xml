@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>tmhs.cytoscape</groupId>
@@ -73,7 +74,8 @@
 						<phase>deploy</phase>
 						<configuration>
 							<target name="copy and rename file">
-								<copy file="./target/latex/documentation/documentation.pdf" tofile="${releaseDir}/documentation-${project.version}.pdf" />
+								<copy file="./target/latex/documentation/documentation.pdf"
+									tofile="${releaseDir}/documentation-${project.version}.pdf" />
 							</target>
 						</configuration>
 						<goals>
@@ -82,35 +84,14 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>wagon-maven-plugin</artifactId>
-				<version>1.0-beta-4</version>
-				<executions>
-					<execution>
-						<id>release</id>
-						<phase>deploy</phase>
-						<goals>
-							<goal>upload</goal>
-						</goals>
-						<configuration>
-							<fromDir>target/</fromDir>
-							<includes>
-								*.pdf
-							</includes>
-							<url>sftp://zhangya998,chemenrich@frs.sourceforge.net:/home/frs/project/c/ch/chemenrich/</url>
-							<toDir>${project.version}</toDir>
-						</configuration>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.apache.maven.wagon</groupId>
-						<artifactId>wagon-ssh</artifactId>
-						<version>2.4</version>
-					</dependency>
-				</dependencies>
-			</plugin>
+			<!-- we will migrate from sourceforge to git hub. remove this -->
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>wagon-maven-plugin</artifactId> 
+				<version>1.0-beta-4</version> <executions> <execution> <id>release</id> <phase>deploy</phase> 
+				<goals> <goal>upload</goal> </goals> <configuration> <fromDir>target/</fromDir> 
+				<includes> *.pdf </includes> <url>sftp://zhangya998,chemenrich@frs.sourceforge.net:/home/frs/project/c/ch/chemenrich/</url> 
+				<toDir>${project.version}</toDir> </configuration> </execution> </executions> 
+				<dependencies> <dependency> <groupId>org.apache.maven.wagon</groupId> <artifactId>wagon-ssh</artifactId> 
+				<version>2.4</version> </dependency> </dependencies> </plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
