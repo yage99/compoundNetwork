@@ -10,6 +10,7 @@
 		<module>ChemAPI</module>
 		<module>documents</module>
 		<module>Samples</module>
+		<module>dbInterfaces</module>
 	</modules>
 	<!-- <parent> <groupId>cytoscape</groupId> <artifactId>parent</artifactId> 
 		<version>2.8.4-SNAPSHOT</version> </parent> -->
@@ -230,11 +231,15 @@
 				<groupId>ChemAPI</groupId>
 				<artifactId>ChemAPI</artifactId>
 				<version>${project.version}</version>
-				<type>bundle</type>
 			</dependency>
 			<dependency>
 				<groupId>tmhs.cytoscape</groupId>
 				<artifactId>documents</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>tmhs.cytoscape</groupId>
+				<artifactId>dbInterfaces</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>

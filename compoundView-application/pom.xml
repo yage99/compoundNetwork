@@ -10,11 +10,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>ChemAPI</groupId>
-			<artifactId>ChemAPI</artifactId>
-			<type>bundle</type>
-		</dependency>
-		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.8.3</version>
@@ -39,6 +34,10 @@
 		<dependency>
 			<groupId>tmhs.cytoscape</groupId>
 			<artifactId>documents</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>tmhs.cytoscape</groupId>
+			<artifactId>dbInterfaces</artifactId>
 		</dependency>
 	</dependencies>
 	<build>

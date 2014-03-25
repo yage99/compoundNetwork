@@ -13,10 +13,6 @@ import org.cytoscape.model.CyTable;
 import org.cytoscape.work.TaskMonitor;
 import org.tmhs.tool.yage.Info.NoticeSystem;
 
-import com.tmhs.database.DAO.DrugDAO;
-import com.tmhs.database.DTO.Drug;
-import com.tmhs.database.DTO.PubChemDrug;
-import com.tmhs.database.frame.DAOManager;
 import com.tmhs.tmhri.enrichedChem.config.EnrichParams;
 import com.tmhs.tmhri.enrichedChem.config.InputParams;
 import com.tmhs.tmhri.enrichedChem.config.InputParams.Params;
@@ -27,6 +23,7 @@ import com.tmhs.tmhri.enrichedChem.task.ThreadManager;
 import com.tmhs.tmhri.enrichedChem.task.ThreadRunner;
 import com.tmhs.tmhri.enrichedChem.ui.ControlPanel;
 import com.tmhs.yage.api.NIH.PubChemCompound;
+import com.tmhs.yage.api.NIH.DTO.PubChemDrug;
 
 /**
  * @author ya
@@ -102,49 +99,51 @@ public class SearchTask extends EnAbstractTask {
 				network.setAttribute(node, EnrichParams.CID, cid);
 				cid2Id.put(cid, node.getSUID());
 			}
-
-		} else if (param == Params.LOCALDATABASE_CID_COVER) {
-			try {
-				for (CyNode node : nodes) {
-					String index = (String) network
-							.getNetwork()
-							.getDefaultEdgeTable()
-							.getRow(node)
-							.get(EnrichParams.ORIGIN_ID.getString(),
-									EnrichParams.ORIGIN_ID.getType());
-					if (index == null || index.equals("")) {
-						NoticeSystem.getInstance().err(node + " cid is null");
-						continue;
-					}
-
-					DrugDAO drugDao = DAOManager.getManager().getDAO(
-							DrugDAO.class);
-					Drug drug = drugDao.getDrugByIndex(index);
-					if (drug == null || drug.getCid() == null) {
-						NoticeSystem.getInstance().err(
-								"drug: " + index
-										+ " not found from local database");
-						continue;
-					}
-					String cid = drug.getCid();
-
-					if (cid == null || cid.equals("")) {
-						NoticeSystem.getInstance().err(node + " cid is null");
-						continue;
-					}
-					cids.add(cid);
-					network.setAttribute(node, EnrichParams.SHOW_NAME,
-							drug.getName());
-					network.setAttribute(node, EnrichParams.CID, cid);
-					cid2Id.put(cid, node.getSUID());
-				}
-			} catch (Exception e) {
-				NoticeSystem.getInstance().err(e.getMessage());
-				NoticeSystem
-						.getInstance()
-						.err("Can't connect to local database. Make sure you have one.");
-				return;
-			}
+			/**
+			 * this section mainly used in a special environment. now be removed
+			 */
+			// } else if (param == Params.LOCALDATABASE_CID_COVER) {
+			// try {
+			// for (CyNode node : nodes) {
+			// String index = (String) network
+			// .getNetwork()
+			// .getDefaultEdgeTable()
+			// .getRow(node)
+			// .get(EnrichParams.ORIGIN_ID.getString(),
+			// EnrichParams.ORIGIN_ID.getType());
+			// if (index == null || index.equals("")) {
+			// NoticeSystem.getInstance().err(node + " cid is null");
+			// continue;
+			// }
+			//
+			// DrugDAO drugDao = DAOManager.getManager().getDAO(
+			// DrugDAO.class);
+			// Drug drug = drugDao.getDrugByIndex(index);
+			// if (drug == null || drug.getCid() == null) {
+			// NoticeSystem.getInstance().err(
+			// "drug: " + index
+			// + " not found from local database");
+			// continue;
+			// }
+			// String cid = drug.getCid();
+			//
+			// if (cid == null || cid.equals("")) {
+			// NoticeSystem.getInstance().err(node + " cid is null");
+			// continue;
+			// }
+			// cids.add(cid);
+			// network.setAttribute(node, EnrichParams.SHOW_NAME,
+			// drug.getName());
+			// network.setAttribute(node, EnrichParams.CID, cid);
+			// cid2Id.put(cid, node.getSUID());
+			// }
+			// } catch (Exception e) {
+			// NoticeSystem.getInstance().err(e.getMessage());
+			// NoticeSystem
+			// .getInstance()
+			// .err("Can't connect to local database. Make sure you have one.");
+			// return;
+			// }
 		} else if (param == Params.COVER_BY_NAME) {
 			coverByName();
 			return;
@@ -163,25 +162,26 @@ public class SearchTask extends EnAbstractTask {
 		// ControlPanel.progressBar.setIndeterminate(false);
 		final List<CyNode> nodes = network.getSelectedNodes();// cyNetwork.getNodeIndicesArray();
 
-		new SearchByNameTask(nodes, network,
-				searchResults).run(taskMonitor);
+		new SearchByNameTask(nodes, network, searchResults).run(taskMonitor);
 
 	}
-	
+
 	/**
 	 * @param network
 	 * @param node
 	 * @param drug
 	 */
-	public static void setNodeDrug(EnrichedNetwork network, CyNode node, PubChemDrug drug) {
+	public static void setNodeDrug(EnrichedNetwork network, CyNode node,
+			PubChemDrug drug) {
 		network.setAttribute(node, EnrichParams.CID, drug.getCid());
-		network.setAttribute(node, EnrichParams.SEARCH_RESULT, drug
-				.getSynos().toString());
-		network.setAttribute(node, EnrichParams.SMILE,
-				drug.getSmiles());
+		network.setAttribute(node, EnrichParams.SEARCH_RESULT, drug.getSynos()
+				.toString());
+		network.setAttribute(node, EnrichParams.SMILE, drug.getSmiles());
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.cytoscape.work.AbstractTask#run(org.cytoscape.work.TaskMonitor)
 	 */
 	@Override

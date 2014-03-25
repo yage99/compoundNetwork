@@ -101,8 +101,6 @@ public class ControlPanel extends JPanel implements CytoPanelComponent {
 
 	static boolean stop = true;
 	private final JRadioButton rdbtnPubchem = new JRadioButton("PubChem");
-	private final JRadioButton rdbtnLocaldatabase = new JRadioButton(
-			"localDatabase");
 	private final JPanel panel_3 = new JPanel();
 	private final JPanel panel_4 = new JPanel();
 	private final JCheckBox chckbxLocalstream = new JCheckBox("LocalStream");
@@ -158,7 +156,6 @@ public class ControlPanel extends JPanel implements CytoPanelComponent {
 		mainFileType.setBounds(11, 23, 104, 21);
 		panel_2.add(mainFileType);
 		mainFileType.setBorder(new LineBorder(new Color(171, 173, 179)));
-		CompoundSource.add(rdbtnLocaldatabase);
 		panel.setBounds(0, 638, 355, 105);
 		panel_5.add(panel);
 
@@ -171,16 +168,6 @@ public class ControlPanel extends JPanel implements CytoPanelComponent {
 		panel.add(smileSourceFile);
 		smileSourceFile.setEnabled(false);
 		smileSourceFile.setColumns(30);
-
-		rdbtnLocaldatabase.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				if (rdbtnLocaldatabase.isSelected())
-					InputParams.idCover = Params.LOCALDATABASE_CID_COVER;
-			}
-		});
-		rdbtnLocaldatabase.setBounds(6, 75, 103, 23);
-		panel.add(rdbtnLocaldatabase);
 		label_2.setBounds(426, 33, 0, 0);
 
 		panel.add(label_2);

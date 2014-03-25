@@ -12,8 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import com.tmhs.database.DTO.PubChemDrug;
 import com.tmhs.tmhri.enrichedChem.ui.ImgShower;
+import com.tmhs.yage.api.NIH.DTO.PubChemDrug;
 
 /**
  * @author ya

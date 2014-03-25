@@ -41,11 +41,6 @@ public class InputParams {
 		 * there is a one-by-one cover file
 		 */
 		COMPOUND_COVER("FILE_SOURCE", "get CID string from a file"),
-		/**
-		 * local database has information about cover origin id to cid
-		 */
-		LOCALDATABASE_CID_COVER("LOCALDATABASE_CID_COVER",
-				"get cid from local database"),
 
 		/**
 		 * this will ignore the origin id information. The system search

@@ -12,8 +12,8 @@ import javax.swing.JTable;
 
 import org.cytoscape.model.CyNode;
 
-import com.tmhs.database.DTO.PubChemDrug;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
+import com.tmhs.yage.api.NIH.DTO.PubChemDrug;
 
 /**
  * @author ya

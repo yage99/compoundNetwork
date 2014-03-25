@@ -36,9 +36,8 @@ import org.tmhs.tool.yage.Internet.DownloadCallBack;
 import org.tmhs.tool.yage.Internet.DownloadFile;
 import org.tmhs.tool.yage.Internet.MyHttpClient;
 
-import com.tmhs.database.DAO.PubChemDrugDAO;
-import com.tmhs.database.DTO.PubChemDrug;
-import com.tmhs.database.frame.DAOManager;
+import com.tmhs.yage.api.NIH.DownloadStructureCallBack;
+import com.tmhs.yage.api.NIH.DTO.PubChemDrug;
 import com.tmhs.yage.api.NIH.DTO.PubChemInfo2;
 import com.tmhs.yage.api.NIH.xml.ResourceManager;
 
@@ -47,36 +46,6 @@ import com.tmhs.yage.api.NIH.xml.ResourceManager;
  * 
  */
 public class PubChemCompound {
-	private static PubChemDrugDAO pubChemDao;
-	private static boolean streamStatus = true;
-
-	synchronized static boolean enterStream() {
-		if (!streamStatus)
-			return false;
-		try {
-			if (pubChemDao != null)
-				return true;
-			Class.forName("com.tmhs.database.frame.DAOManager");
-			NoticeSystem.getInstance().debug(
-					"found database, entering stream model");
-			pubChemDao = DAOManager.getManager().getDAO(PubChemDrugDAO.class);
-		} catch (ClassNotFoundException e) {
-			// e.printStackTrace();
-			streamStatus = false;
-			NoticeSystem.getInstance().debug("have not connected to a stream");
-			return false;
-		} catch (Exception e) {
-			// e.printStackTrace();
-			streamStatus = false;
-			NoticeSystem
-					.getInstance()
-					.warning(
-							"error when ertering stream model. Stay in connect with pubchem.");
-			return false;
-		}
-
-		return true;
-	}
 
 	/**
 	 * @param orgchemName
@@ -97,17 +66,15 @@ public class PubChemCompound {
 							"http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pccompound&term="
 									+ chemName).timeout(20000).execute();
 		} catch (IOException e) {
+			e.printStackTrace();
 			if (e.getMessage().equals("Read timed out")) {
 				throw new Exception("Read timed out");
 			}
 			if (e.getMessage().equals("HTTP error fetching URL")) {
 				throw new Exception("Service Unavaiable");
 			} else {
-				throw new Exception(
-						"can't execute\n"
-								+ chemName
-								+ ":url-http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pccompound&term="
-								+ chemName);
+				throw new Exception("can't find: " + chemName + "\nMessage: "
+						+ e.getMessage());
 			}
 		}
 
@@ -134,11 +101,6 @@ public class PubChemCompound {
 
 				if (info.getSynonyms().toString().contains(orgchemName))
 					bestMatch = drug;
-				if (enterStream()) {
-					if (pubChemDao.find(cid.text()) == null) {
-						pubChemDao.insert(drug);
-					}
-				}
 
 			}
 			if (bestMatch != null) {
@@ -242,10 +204,6 @@ public class PubChemCompound {
 	 */
 	public static PubChemDrug getDrugByCid(String cid) {
 		PubChemDrug drug = null;
-		if (enterStream()) {
-			if ((drug = pubChemDao.find(cid)) != null)
-				return drug;
-		}
 		drug = new PubChemDrug();
 		PubChemInfo2 info = chemInfo(cid);
 		drug.setCid(cid);
@@ -310,25 +268,6 @@ public class PubChemCompound {
 			final DownloadStructureCallBack callback, final boolean multiThread)
 			throws Exception {
 		final Map<String, String> structures = new HashMap<String, String>();
-		// XXX finish stream model
-		if (enterStream()) {
-			pubChemDao = DAOManager.getManager().getDAO(PubChemDrugDAO.class);
-			for (String cid : cids) {
-				PubChemDrug drug = pubChemDao.find(cid);
-				if (drug != null && drug.getSmiles() != null) {
-					structures.put(drug.getCid(), drug.getSmiles());
-				}
-			}
-			cids.removeAll(structures.keySet());
-			if (cids.size() == 0) {
-				new Thread() {
-					public void run() {
-						callback.finish(structures);
-					}
-				}.start();
-				return;
-			}
-		}
 		SAXReader reader = new SAXReader();
 		org.dom4j.Document doc = reader.read(ResourceManager
 				.getXML("CidsForSdfDownload.xml"));
@@ -374,34 +313,6 @@ public class PubChemCompound {
 						e1.printStackTrace();
 					} catch (IOException e) {
 						e.printStackTrace();
-					}
-					if (enterStream()) {
-						try {
-							if (pubChemDao == null)
-								pubChemDao = DAOManager.getManager().getDAO(
-										PubChemDrugDAO.class);
-							for (String key : newparse.keySet()) {
-								PubChemDrug pubchem = pubChemDao.find(key);
-								if (pubchem != null) {
-									pubchem.setSmiles(newparse.get(key));
-									if (!pubChemDao.update(pubchem)) {
-										NoticeSystem.getInstance().err(
-												"update database error");
-									}
-								} else {
-									pubchem = new PubChemDrug();
-									pubchem.setCid(key);
-									pubchem.setSmiles(newparse.get(key));
-									pubChemDao.insert(pubchem);
-								}
-							}
-						} catch (ClassNotFoundException e) {
-							NoticeSystem.getInstance().debug("no database");
-						} catch (Exception e) {
-							NoticeSystem.getInstance().err(
-									"enter fail, database system config error:"
-											+ e.getMessage());
-						}
 					}
 				}
 				if (callback != null) {

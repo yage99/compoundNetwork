@@ -10,7 +10,8 @@ import javax.swing.table.AbstractTableModel;
 
 import org.cytoscape.model.CyNode;
 
-import com.tmhs.database.DTO.PubChemDrug;
+import com.tmhs.yage.api.NIH.DTO.PubChemDrug;
+
 
 /**
  * @author ya

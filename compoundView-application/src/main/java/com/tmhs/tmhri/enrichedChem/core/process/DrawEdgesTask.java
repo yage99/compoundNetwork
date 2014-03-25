@@ -5,7 +5,6 @@ package com.tmhs.tmhri.enrichedChem.core.process;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.cytoscape.model.CyEdge;
 import org.cytoscape.model.CyNode;
 import org.cytoscape.work.TaskMonitor;
 import org.tmhs.tool.yage.Info.NoticeSystem;
@@ -13,6 +12,7 @@ import org.tmhs.tool.yage.Info.NoticeSystem;
 import com.tmhs.database.DAO.CompoundSimilarityDAO;
 import com.tmhs.database.DTO.CompoundSimilarity;
 import com.tmhs.database.frame.DAOManager;
+import com.tmhs.database.main.PubChemWithStream;
 import com.tmhs.tmhri.enrichedChem.config.EnrichParams;
 import com.tmhs.tmhri.enrichedChem.config.InputParams;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
@@ -20,7 +20,6 @@ import com.tmhs.tmhri.enrichedChem.task.EnAbstractTask;
 import com.tmhs.tmhri.enrichedChem.task.ThreadManager;
 import com.tmhs.tmhri.enrichedChem.task.ThreadRunner;
 import com.tmhs.tmhri.enrichedChem.ui.LocalNoticeSys;
-import com.tmhs.yage.api.NIH.PubChemCompound;
 
 /**
  * @author ya
@@ -194,7 +193,7 @@ class DrawEdgeRunner extends ThreadRunner {
 	 * @throws Exception
 	 */
 	private double getPPI(String smile1, String smile2) throws Exception {
-		PubChemCompound comp = new PubChemCompound();
+		PubChemWithStream comp = new PubChemWithStream();
 		if (InputParams.database_stream) {
 			/*
 			 * here is the stream model. values will first be find from
