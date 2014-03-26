@@ -292,4 +292,11 @@ public class SearchResultPanel extends JPanel implements CytoPanelComponent {
 	public EnrichedNetwork getNetwork() {
 		return network;
 	}
+
+	/**
+	 * @return table model
+	 */
+	public static SearchResultTableModel getTableModel() {
+		return tableModel;
+	}
 }

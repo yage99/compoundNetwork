@@ -31,7 +31,7 @@ public class SearchResultAction extends MouseAdapter {
 	 */
 	public SearchResultAction(SearchResultPanel panel) {
 		this.table = SearchResultPanel.getTable();
-		this.tableModel = (SearchResultTableModel) table.getModel();
+		this.tableModel = SearchResultPanel.getTableModel();
 		this.list = SearchResultPanel.getSynoListPanel();
 		this.network = panel.getNetwork();
 		this.img = SearchResultPanel.getImagePanel();

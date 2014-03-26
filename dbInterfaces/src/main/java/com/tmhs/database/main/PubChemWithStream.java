@@ -80,7 +80,8 @@ public class PubChemWithStream {
 
 			if (drug.getSynos().contains(orgchemName))
 				bestMatch = drug;
-
+			
+			result.add(drug);
 		}
 		if (bestMatch != null) {
 			result.remove(bestMatch);
