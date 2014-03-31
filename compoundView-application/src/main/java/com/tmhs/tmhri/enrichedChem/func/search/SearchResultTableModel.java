@@ -10,7 +10,7 @@ import javax.swing.table.AbstractTableModel;
 
 import org.cytoscape.model.CyNode;
 
-import com.tmhs.database.DTO.PubChemDrug;
+import com.tmhs.yage.api.NIH.DTO.PubChemDrug;
 
 /**
  * @author ya
@@ -28,10 +28,19 @@ public class SearchResultTableModel extends AbstractTableModel {
 	 */
 	private static final long serialVersionUID = -2370148716805867010L;
 
+	/**
+	 * 
+	 */
 	public SearchResultTableModel() {
 
 	}
 
+	/**
+	 * set table with given dataset
+	 * 
+	 * @param map
+	 * @param nodeList
+	 */
 	public void refreshTable(Map<CyNode, List<PubChemDrug>> map,
 			List<CyNode> nodeList) {
 		this.result = map;
@@ -80,14 +89,27 @@ public class SearchResultTableModel extends AbstractTableModel {
 		return null;
 	}
 
+	/**
+	 * @param columnIndex
+	 * @return the node of this column
+	 */
 	public CyNode getParent(int columnIndex) {
 		return nodeList.get(columnIndex);
 	}
 
+	/**
+	 * @param node
+	 * @return get column according to node
+	 */
 	public List<PubChemDrug> getColumn(CyNode node) {
 		return result.get(node);
 	}
 
+	/**
+	 * @param rowIndex
+	 * @param node
+	 * @return get one drug in the node in rowIndex
+	 */
 	public PubChemDrug getDrug(int rowIndex, CyNode node) {
 		List<PubChemDrug> line = result.get(node);
 		if (rowIndex < line.size())

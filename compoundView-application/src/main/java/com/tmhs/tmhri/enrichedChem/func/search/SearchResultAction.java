@@ -12,8 +12,8 @@ import javax.swing.JTable;
 
 import org.cytoscape.model.CyNode;
 
-import com.tmhs.database.DTO.PubChemDrug;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
+import com.tmhs.yage.api.NIH.DTO.PubChemDrug;
 
 /**
  * @author ya
@@ -31,7 +31,7 @@ public class SearchResultAction extends MouseAdapter {
 	 */
 	public SearchResultAction(SearchResultPanel panel) {
 		this.table = SearchResultPanel.getTable();
-		this.tableModel = (SearchResultTableModel) table.getModel();
+		this.tableModel = SearchResultPanel.getTableModel();
 		this.list = SearchResultPanel.getSynoListPanel();
 		this.network = panel.getNetwork();
 		this.img = SearchResultPanel.getImagePanel();

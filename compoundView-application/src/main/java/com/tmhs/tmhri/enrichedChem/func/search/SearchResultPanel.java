@@ -25,12 +25,12 @@ import org.cytoscape.application.swing.CytoPanelName;
 import org.cytoscape.model.CyNode;
 import org.tmhs.tool.yage.Info.NoticeSystem;
 
-import com.tmhs.database.DTO.PubChemDrug;
 import com.tmhs.tmhri.enrichedChem.EnrichedChemPlugin;
 import com.tmhs.tmhri.enrichedChem.config.EnrichParams;
 import com.tmhs.tmhri.enrichedChem.config.InputParams;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
 import com.tmhs.tmhri.enrichedChem.core.NotEnrichedException;
+import com.tmhs.yage.api.NIH.DTO.PubChemDrug;
 
 import javax.swing.ScrollPaneConstants;
 
@@ -291,5 +291,12 @@ public class SearchResultPanel extends JPanel implements CytoPanelComponent {
 	 */
 	public EnrichedNetwork getNetwork() {
 		return network;
+	}
+
+	/**
+	 * @return table model
+	 */
+	public static SearchResultTableModel getTableModel() {
+		return tableModel;
 	}
 }

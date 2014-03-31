@@ -19,7 +19,6 @@ import org.cytoscape.view.model.CyNetworkView;
 import org.cytoscape.view.model.View;
 import org.cytoscape.work.TaskIterator;
 
-import com.tmhs.database.DTO.PubChemDrug;
 import com.tmhs.tmhri.enrichedChem.EnrichedChemPlugin;
 import com.tmhs.tmhri.enrichedChem.config.EnrichParams;
 import com.tmhs.tmhri.enrichedChem.config.FileType;
@@ -31,6 +30,7 @@ import com.tmhs.tmhri.enrichedChem.func.search.SearchResultPanel;
 import com.tmhs.tmhri.enrichedChem.func.search.SearchTask;
 import com.tmhs.tmhri.enrichedChem.visual.MoreVisualLexicon;
 import com.tmhs.tmhri.enrichedChem.visual.PieChartGraph;
+import com.tmhs.yage.api.NIH.DTO.PubChemDrug;
 
 /**
  * @author TMHYXZ6
@@ -79,6 +79,7 @@ public class EnrichedNetwork {
 	 * @param source
 	 * @param target
 	 * @param isDirected
+	 * @param width 
 	 * @return the new edge
 	 */
 	public synchronized CyEdge addEdge(CyNode source, CyNode target,
