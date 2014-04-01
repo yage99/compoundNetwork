@@ -19,11 +19,13 @@ import com.tmhs.database.Mongo.Collection;
 /**
  * @author TMHYXZ6
  * 
+ * @deprecated this also useless. will be remove from next release.
+ * 
  */
 public class DrugDAOImpl extends Collection implements DrugDAO {
 
 	/**
-	 * @throws UnknownHostException 
+	 * @throws UnknownHostException
 	 * 
 	 */
 	public DrugDAOImpl() throws UnknownHostException {

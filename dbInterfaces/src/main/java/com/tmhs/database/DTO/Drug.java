@@ -1,5 +1,7 @@
 package com.tmhs.database.DTO;
 
+import com.tmhs.yage.api.NIH.DTO.PubChemDrug;
+
 
 /**
  * @author TMHYXZ6
