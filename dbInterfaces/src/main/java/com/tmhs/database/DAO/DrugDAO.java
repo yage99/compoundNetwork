@@ -7,6 +7,7 @@ import com.tmhs.database.DTO.Drug;
 /**
  * @author TMHYXZ6
  * 
+ * @deprecated don't use this
  */
 public interface DrugDAO {
 	/**
