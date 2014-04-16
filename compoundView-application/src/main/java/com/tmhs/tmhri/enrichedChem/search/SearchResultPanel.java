@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tmhs.tmhri.enrichedChem.func.search;
+package com.tmhs.tmhri.enrichedChem.search;
 
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
@@ -48,7 +48,10 @@ public class SearchResultPanel extends JPanel implements CytoPanelComponent {
 	static DefaultTableColumnModel columnModel = new DefaultTableColumnModel();
 	static JList<String> synoListPanel = new JList<String>();
 	static ImageShow img;
-	static EnrichedNetwork network;
+	/**
+	 * current network in operation
+	 */
+	public static EnrichedNetwork network;
 
 	/**
 	 * 
@@ -57,7 +60,6 @@ public class SearchResultPanel extends JPanel implements CytoPanelComponent {
 
 		table = new JTable();
 		table.setFillsViewportHeight(true);
-		table.addMouseListener(new SearchResultAction(this));
 		table.setCellSelectionEnabled(true);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setRowSelectionAllowed(false);
@@ -176,6 +178,8 @@ public class SearchResultPanel extends JPanel implements CytoPanelComponent {
 			}
 		});
 		panel_1.add(btnDrawedges);
+
+		table.addMouseListener(new SearchResultAction(this));
 	}
 
 	/**
@@ -222,6 +226,14 @@ public class SearchResultPanel extends JPanel implements CytoPanelComponent {
 	 */
 	public static void setImg(PubChemDrug drug) {
 		img.setImg(drug);
+	}
+
+	/**
+	 * repaint the panel
+	 */
+	public static void refresh() {
+		tableModel.fireTableDataChanged();
+		table.repaint();
 	}
 
 	/*
@@ -284,13 +296,6 @@ public class SearchResultPanel extends JPanel implements CytoPanelComponent {
 	 */
 	public static ImageShow getImagePanel() {
 		return img;
-	}
-
-	/**
-	 * @return current network search result managed
-	 */
-	public EnrichedNetwork getNetwork() {
-		return network;
 	}
 
 	/**

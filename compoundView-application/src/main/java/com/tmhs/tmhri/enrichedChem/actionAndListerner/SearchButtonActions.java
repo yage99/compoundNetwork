@@ -10,7 +10,7 @@ import org.tmhs.tool.yage.Info.NoticeSystem;
 
 import com.tmhs.tmhri.enrichedChem.EnrichedChemPlugin;
 import com.tmhs.tmhri.enrichedChem.config.InputParams;
-import com.tmhs.tmhri.enrichedChem.func.search.SearchTask;
+import com.tmhs.tmhri.enrichedChem.search.SearchTask;
 
 /**
  * @author TMHYXZ6

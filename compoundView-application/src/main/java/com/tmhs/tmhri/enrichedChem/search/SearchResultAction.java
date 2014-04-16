@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tmhs.tmhri.enrichedChem.func.search;
+package com.tmhs.tmhri.enrichedChem.search;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -23,22 +23,24 @@ public class SearchResultAction extends MouseAdapter {
 	private SearchResultTableModel tableModel;
 	private JTable table;
 	private JList<String> list;
-	private EnrichedNetwork network;
 	private ImageShow img;
 
 	/**
-	 * @param panel search result panel
+	 * @param panel
+	 *            search result panel
 	 */
 	public SearchResultAction(SearchResultPanel panel) {
 		this.table = SearchResultPanel.getTable();
 		this.tableModel = SearchResultPanel.getTableModel();
 		this.list = SearchResultPanel.getSynoListPanel();
-		this.network = panel.getNetwork();
 		this.img = SearchResultPanel.getImagePanel();
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+
+		EnrichedNetwork network = SearchResultPanel.network;
+
 		CyNode node = tableModel.getParent(table.getSelectedColumn());
 		PubChemDrug drug = tableModel.getDrug(table.getSelectedRow(), node);
 		List<String> synos = drug.getSynos();
@@ -58,8 +60,7 @@ public class SearchResultAction extends MouseAdapter {
 			}
 
 			SearchTask.setNodeDrug(network, node, drug);
-			tableModel.fireTableDataChanged();
-			table.repaint();
+			SearchResultPanel.refresh();
 
 		}
 

@@ -13,7 +13,7 @@ import org.cytoscape.application.swing.CytoPanelState;
 
 import com.tmhs.tmhri.enrichedChem.EnrichedChemPlugin;
 import com.tmhs.tmhri.enrichedChem.config.FileType;
-import com.tmhs.tmhri.enrichedChem.func.search.SearchResultPanel;
+import com.tmhs.tmhri.enrichedChem.search.SearchResultPanel;
 import com.tmhs.tmhri.enrichedChem.ui.ControlPanel;
 
 /**

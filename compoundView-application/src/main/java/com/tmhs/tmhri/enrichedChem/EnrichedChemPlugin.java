@@ -43,7 +43,7 @@ import org.osgi.framework.BundleContext;
 import com.tmhs.tmhri.enrichedChem.actionAndListerner.MenuAction;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
 import com.tmhs.tmhri.enrichedChem.core.NotEnrichedException;
-import com.tmhs.tmhri.enrichedChem.func.search.SearchResultPanel;
+import com.tmhs.tmhri.enrichedChem.search.SearchResultPanel;
 import com.tmhs.tmhri.enrichedChem.task.EnAbstractTask;
 import com.tmhs.tmhri.enrichedChem.task.ThreadManager;
 import com.tmhs.tmhri.enrichedChem.ui.ControlPanel;

@@ -17,7 +17,7 @@ import org.tmhs.tool.yage.Info.NoticeSystem;
 
 import com.tmhs.tmhri.enrichedChem.EnrichedChemPlugin;
 import com.tmhs.tmhri.enrichedChem.core.EnrichedNetwork;
-import com.tmhs.tmhri.enrichedChem.func.search.SearchResultPanel;
+import com.tmhs.tmhri.enrichedChem.search.SearchResultPanel;
 
 /**
  * @author TMHYXZ6

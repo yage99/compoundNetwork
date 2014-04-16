@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tmhs.tmhri.enrichedChem.func.search;
+package com.tmhs.tmhri.enrichedChem.search;
 
 import java.util.ArrayList;
 import java.util.HashMap;

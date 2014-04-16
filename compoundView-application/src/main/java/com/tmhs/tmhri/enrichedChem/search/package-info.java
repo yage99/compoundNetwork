@@ -5,4 +5,4 @@
  * @author ya
  *
  */
-package com.tmhs.tmhri.enrichedChem.func.search;
+package com.tmhs.tmhri.enrichedChem.search;
